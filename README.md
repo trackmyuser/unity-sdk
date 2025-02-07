@@ -12,6 +12,8 @@ https://github.com/user-attachments/assets/4d9d2368-46f0-4df9-ad81-19fafb2aeac1
 
 #### Add these dependencies to your gradle file
 
+https://github.com/user-attachments/assets/5c1ac3f9-499f-4db7-bb98-324d15670fe0
+
 ```gradle
 dependencies {
     // TrackMyUser
