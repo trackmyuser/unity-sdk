@@ -2,9 +2,11 @@
 
 ## 1. Download the unity package
 
+https://github.com/user-attachments/assets/cfb894f4-87af-485b-87ed-c9063c2ec1ad
+
 ## 2. Import the package into your project
 
-### Drag and drop the package into the Unity Editor
+https://github.com/user-attachments/assets/4d9d2368-46f0-4df9-ad81-19fafb2aeac1
 
 ## 3. Add Android Dependencies
 
