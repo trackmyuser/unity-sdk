@@ -60,8 +60,8 @@ Whenever the player progresses to a new level, call:
 public void ProgressToNextLevel(int level) {
     Debug.Log("User progressed to Level " + level);
 
-    // Send tracking event
-    TrackMyUser.TrackEvent("Level_" + level);
+    // Send tracking event with the event code copied from the dashboard
+    TrackMyUser.TrackEvent("YOUR_EVENT_CODE");
 }
 ```
 
