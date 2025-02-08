@@ -10,9 +10,9 @@ https://github.com/user-attachments/assets/4d9d2368-46f0-4df9-ad81-19fafb2aeac1
 
 ## 3. Add Android Dependencies
 
-#### Add these dependencies to your gradle file
+https://github.com/user-attachments/assets/b6a3ed3b-e8a8-43ce-86af-06bc3d0b74be
 
-https://github.com/user-attachments/assets/5c1ac3f9-499f-4db7-bb98-324d15670fe0
+#### Add these dependencies to your gradle file
 
 ```gradle
 dependencies {
@@ -31,8 +31,6 @@ dependencies {
 ```
 
 ### Add these permissions to your AndroidManifest.xml file
-
-https://github.com/user-attachments/assets/5c1ac3f9-499f-4db7-bb98-324d15670fe0
 
 ```xml
 <uses-permission android:name="android.permission.INTERNET" />
