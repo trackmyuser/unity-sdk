@@ -37,7 +37,10 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
     void Start() {
-        TrackMyUser.Init("YOUR_SDK_KEY");  // Initialize SDK
+        TrackMyUserConfig config = new TrackMyUserConfig();
+        config.setAndroidSdkKey("YOUR_ANDROID_SDK_KEY");
+        config.setiOSSdkKey("YOUR_IOS_SDK_KEY");
+        TrackMyUser.Init(config);  // Initialize SDK
     }
 }
 ```
