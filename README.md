@@ -12,21 +12,11 @@ https://github.com/user-attachments/assets/4d9d2368-46f0-4df9-ad81-19fafb2aeac1
 
 https://github.com/user-attachments/assets/b6a3ed3b-e8a8-43ce-86af-06bc3d0b74be
 
-#### Add these dependencies to your gradle file
+#### Add the dependency to your gradle file
 
 ```gradle
 dependencies {
-    //TrackMyUser
-    implementation(name: 'com.trackmyuser.sdk_v0.0.4', ext: 'aar')
-    implementation 'com.android.installreferrer:installreferrer:2.2'
-    implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.11'
-    implementation 'com.squareup.okhttp3:okhttp-urlconnection:5.0.0-alpha.11'
-    implementation 'com.squareup.okhttp3:okhttp-dnsoverhttps:4.12.0'
-    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
-    implementation "androidx.work:work-runtime:2.8.0"
-    implementation 'com.google.android.gms:play-services-ads-identifier:18.0.1'
-    //
+    implementation 'com.github.trackmyuser:android-sdk:0.2.17'
 }
 ```
 
