@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour {
         TrackMyUserConfig config = new TrackMyUserConfig();
         config.setAndroidSdkKey("YOUR_ANDROID_SDK_KEY");
         config.setiOSSdkKey("YOUR_IOS_SDK_KEY");
-        TrackMyUser.Init(config);  // Initialize SDK
+        TrackMyUserSDK.Init(config);  // Initialize SDK
     }
 }
 ```
