@@ -16,7 +16,7 @@ https://github.com/user-attachments/assets/b6a3ed3b-e8a8-43ce-86af-06bc3d0b74be
 
 ```gradle
 dependencies {
-    implementation 'com.github.trackmyuser:android-sdk:1.1.2'
+    implementation 'com.github.trackmyuser:android-sdk:1.1.3'
 }
 ```
 
@@ -59,22 +59,78 @@ public void ProgressToNextLevel(int level) {
 ## 5. In-App Purchase Tracking
 
 ```cs
-public void OnPurchased(Product product)
+using UnityEngine;
+using UnityEngine.Purchasing;
+using System;
+
+public class IAPManager : MonoBehaviour, IStoreListener
 {
-    // Extract purchase details
-    string productId = product.definition.id;
-    string transactionID = product.transactionID;
-    double revenue = (double) product.metadata.localizedPrice;
-    string currency = product.metadata.isoCurrencyCode;
-    string receipt = product.receipt;
+    public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs args)
+    {
+        Product product = args.purchasedProduct;
 
-    TrackMyUserIAPEvent iapEvent = new TrackMyUserIAPEvent();
-    iapEvent.SetRevenue(currency, revenue);
-    iapEvent.SetProductId(productId);
-    iapEvent.SetTransactionId(transactionID);
-    iapEvent.SetReceipt(receipt);
+        // Extract default values
+        string productId = product.definition.id;
+        string transactionID = product.transactionID;
+        double revenue = (double)product.metadata.localizedPrice;
+        string currency = product.metadata.isoCurrencyCode;
+        string receipt = product.receipt;
 
-    TrackMyUserSDK.TrackIAPEvent(iapEvent);
+        TrackMyUserIAPEvent iapEvent = new TrackMyUserIAPEvent();
+        iapEvent.SetRevenue(currency, revenue);
+        iapEvent.SetProductId(productId);
+        iapEvent.SetTransactionId(transactionID);
+
+        //required for android.
+        string purchaseToken = ExtractPurchaseToken(receipt);
+        if(purchaseToken != null)
+        {
+            iapEvent.setPurchaseToken(purchaseToken);
+        }
+    
+        TrackMyUserSDK.TrackIAPEvent(iapEvent);
+        
+        return PurchaseProcessingResult.Complete;
+    }
+
+    private string ExtractPurchaseToken(string receipt)
+    {
+        if (string.IsNullOrEmpty(receipt))
+        {
+            return null;
+        }
+
+        try
+        {
+            // Find purchaseToken using simple string operations
+            const string tokenKey = "\"purchaseToken\":\"";
+            int tokenStartIndex = receipt.IndexOf(tokenKey);
+
+            if (tokenStartIndex == -1)
+            {
+                Debug.LogError("Purchase token not found in receipt.");
+                return null;
+            }
+
+            tokenStartIndex += tokenKey.Length;
+            int tokenEndIndex = receipt.IndexOf("\"", tokenStartIndex);
+
+            if (tokenEndIndex == -1)
+            {
+                Debug.LogError("Failed to extract purchase token.");
+                return null;
+            }
+
+            string purchaseToken = receipt.Substring(tokenStartIndex, tokenEndIndex - tokenStartIndex);
+            return purchaseToken;
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"Error extracting purchase token: {ex.Message}");
+            return null;
+        }
+    }
 }
+
 ```
 
