@@ -102,7 +102,6 @@ public class IAPManager : MonoBehaviour, IStoreListener
 
         try
         {
-            // Find purchaseToken using simple string operations
             const string tokenKey = "\"purchaseToken\":\"";
             int tokenStartIndex = receipt.IndexOf(tokenKey);
 
