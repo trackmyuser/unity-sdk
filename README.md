@@ -47,15 +47,34 @@ public class GameManager : MonoBehaviour {
 
 ## 5. Event Tracking
 
-Whenever the player progresses to a new level, call:
-
-
 ```cs
 public void ProgressToNextLevel(int level) {
     Debug.Log("User progressed to Level " + level);
 
     // Send tracking event with the event code copied from the dashboard
     TrackMyUser.TrackEvent("YOUR_EVENT_CODE");
+}
+```
+
+## 5. In-App Purchase Tracking
+
+```cs
+public void OnPurchased(Product product)
+{
+    // Extract purchase details
+    string productId = product.definition.id;
+    string transactionID = product.transactionID;
+    double revenue = (double) product.metadata.localizedPrice;
+    string currency = product.metadata.isoCurrencyCode;
+    string receipt = product.receipt;
+
+    TrackMyUserIAPEvent iapEvent = new TrackMyUserIAPEvent();
+    iapEvent.SetRevenue(currency, revenue);
+    iapEvent.SetProductId(productId);
+    iapEvent.SetTransactionId(transactionID);
+    iapEvent.SetReceipt(receipt);
+
+    TrackMyUserSDK.TrackIAPEvent(iapEvent);
 }
 ```
 
