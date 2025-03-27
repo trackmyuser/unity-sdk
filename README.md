@@ -82,52 +82,11 @@ public class IAPManager : MonoBehaviour, IStoreListener
         iapEvent.SetTransactionId(transactionID);
 
         //required for android.
-        string purchaseToken = ExtractPurchaseToken(receipt);
-        if(purchaseToken != null)
-        {
-            iapEvent.setPurchaseToken(purchaseToken);
-        }
+        iapEvent.setReceipt(receipt);
     
         TrackMyUserSDK.TrackIAPEvent(iapEvent);
         
         return PurchaseProcessingResult.Complete;
-    }
-
-    private string ExtractPurchaseToken(string receipt)
-    {
-        if (string.IsNullOrEmpty(receipt))
-        {
-            return null;
-        }
-
-        try
-        {
-            const string tokenKey = "\"purchaseToken\":\"";
-            int tokenStartIndex = receipt.IndexOf(tokenKey);
-
-            if (tokenStartIndex == -1)
-            {
-                Debug.LogError("Purchase token not found in receipt.");
-                return null;
-            }
-
-            tokenStartIndex += tokenKey.Length;
-            int tokenEndIndex = receipt.IndexOf("\"", tokenStartIndex);
-
-            if (tokenEndIndex == -1)
-            {
-                Debug.LogError("Failed to extract purchase token.");
-                return null;
-            }
-
-            string purchaseToken = receipt.Substring(tokenStartIndex, tokenEndIndex - tokenStartIndex);
-            return purchaseToken;
-        }
-        catch (Exception ex)
-        {
-            Debug.LogError($"Error extracting purchase token: {ex.Message}");
-            return null;
-        }
     }
 }
 
