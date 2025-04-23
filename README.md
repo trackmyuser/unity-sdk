@@ -45,18 +45,14 @@ public class GameManager : MonoBehaviour {
 }
 ```
 
-## 5. Event Tracking
+## 5. Custom Event Tracking
 
 ```cs
-public void ProgressToNextLevel(int level) {
-    Debug.Log("User progressed to Level " + level);
-
-    // Send tracking event with the event code copied from the dashboard
-    TrackMyUser.TrackEvent("YOUR_EVENT_CODE");
-}
+// Send tracking event with the event code copied from the dashboard
+TrackMyUser.TrackEvent("YOUR_EVENT_CODE");
 ```
 
-## 5. In-App Purchase Tracking
+## 6. In-App Purchase Tracking
 
 ```cs
 using UnityEngine;
@@ -89,6 +85,45 @@ public class IAPManager : MonoBehaviour, IStoreListener
         return PurchaseProcessingResult.Complete;
     }
 }
-
 ```
 
+## 6. Level completion Tracking
+
+```cs
+public void ProgressToNextLevel(int level) {
+    TrackMyUserSDK.TrackLevelCompletedEvent(new TrackMyUserLevelCompletedEvent(level.ToString()));
+}
+```
+
+## 7. Ad revenue Tracking
+
+Follow the instructions in the link below to enable AdMob's impression-level ad revenue:
+
+https://support.google.com/admob/answer/11322405?hl=en
+
+#### Example using AdMob:
+
+```cs
+using GoogleMobileAds.Api;
+using GoogleMobileAds.Common;
+using System;
+
+RewardedAd rewardedAd;
+
+void LoadRewardedAd() {
+    rewardedAd = new RewardedAd("your_ad_unit_id");
+
+    rewardedAd.OnPaidEvent += HandlePaidEvent;
+
+    AdRequest request = new AdRequest.Builder().Build();
+    rewardedAd.LoadAd(request);
+}
+
+void HandlePaidEvent(object sender, AdValueEventArgs args) {
+    long valueMicros = args.AdValue.Value; // revenue in micros
+    string currencyCode = args.AdValue.CurrencyCode;
+    double revenue = valueMicros / 1_000_000.0;
+
+    TrackMyUserSDK.TrackAdRevenueEvent(new TrackMyUserAdRevenueEvent(currencyCode, revenue));
+}
+```
