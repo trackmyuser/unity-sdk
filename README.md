@@ -28,6 +28,20 @@ dependencies {
 <uses-permission android:name="com.google.android.gms.permission.AD_ID"/>
 ```
 
+#### Add these to your settings.gradle file
+
+```gradle
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS) // make sure RepositoriesMode is set to FAIL_ON_PROJECT_REPOS
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+        maven { url 'https://jitpack.io' } // make sure to add this line
+    }
+}
+```
+
 ## 4. Initialising the SDK
 
 Modify any GameManager or startup script to initialize the SDK:
