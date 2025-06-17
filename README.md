@@ -134,8 +134,8 @@ void LoadRewardedAd() {
 }
 
 void HandlePaidEvent(AdValue adValue) {
-    long valueMicros = args.AdValue.Value; // revenue in micros
-    string currencyCode = args.AdValue.CurrencyCode;
+    long valueMicros = adValue.Value; // revenue in micros
+    string currencyCode = adValue.CurrencyCode;
     double revenue = valueMicros / 1_000_000.0;
 
     TrackMyUserSDK.TrackAdRevenueEvent(new TrackMyUserAdRevenueEvent(currencyCode, revenue));
