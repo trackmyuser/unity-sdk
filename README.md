@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour {
 
 ```cs
 // Send tracking event with the event code copied from the dashboard
-TrackMyUser.TrackEvent("YOUR_EVENT_CODE");
+TrackMyUserSDK.TrackEvent("YOUR_EVENT_CODE");
 ```
 
 ## 6. In-App Purchase Tracking
@@ -133,7 +133,7 @@ void LoadRewardedAd() {
     rewardedAd.LoadAd(request);
 }
 
-void HandlePaidEvent(object sender, AdValueEventArgs args) {
+void HandlePaidEvent(oAdValue adValue) {
     long valueMicros = args.AdValue.Value; // revenue in micros
     string currencyCode = args.AdValue.CurrencyCode;
     double revenue = valueMicros / 1_000_000.0;
