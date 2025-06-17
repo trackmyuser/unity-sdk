@@ -133,7 +133,7 @@ void LoadRewardedAd() {
     rewardedAd.LoadAd(request);
 }
 
-void HandlePaidEvent(oAdValue adValue) {
+void HandlePaidEvent(AdValue adValue) {
     long valueMicros = args.AdValue.Value; // revenue in micros
     string currencyCode = args.AdValue.CurrencyCode;
     double revenue = valueMicros / 1_000_000.0;
