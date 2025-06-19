@@ -17,6 +17,7 @@ https://github.com/user-attachments/assets/b6a3ed3b-e8a8-43ce-86af-06bc3d0b74be
 ```gradle
 dependencies {
     implementation 'com.github.trackmyuser:android-sdk:1.1.3'
+    implementation 'androidx.work:work-runtime-ktx:2.8.0'
 }
 ```
 
