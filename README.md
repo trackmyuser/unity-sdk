@@ -17,6 +17,8 @@ https://github.com/user-attachments/assets/b6a3ed3b-e8a8-43ce-86af-06bc3d0b74be
 ```gradle
 dependencies {
     implementation 'com.github.trackmyuser:android-sdk:1.1.9'
+    // If the comment below exists in your file, make sure to add the dependency above the comment. 
+    // Android Resolver Dependencies Start
 }
 ```
 
