@@ -41,6 +41,9 @@ dependencyResolutionManagement {
         mavenCentral()
         gradlePluginPortal()
         maven { url 'https://jitpack.io' } // make sure to add this line
+        // Note: If the comment below exists in your file, make sure to add the dependency above it.
+
+        // Android Resolver Repos Start
     }
 }
 ```
