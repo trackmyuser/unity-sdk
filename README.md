@@ -23,7 +23,7 @@ dependencies {
 }
 ```
 
-### Add these permissions to your AndroidManifest.xml file
+#### Add these permissions to your AndroidManifest.xml file
 
 ```xml
 <uses-permission android:name="android.permission.INTERNET" />
